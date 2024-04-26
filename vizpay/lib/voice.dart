@@ -1,17 +1,19 @@
 import 'dart:async';
 import 'dart:ui';
 import 'package:flutter/material.dart';
-import 'package:vizpay/HomePage.dart';
-import 'package:vizpay/voice.dart';
+import 'package:speech_to_text/speech_to_text.dart' as stt;
+import 'package:permission_handler/permission_handler.dart';
 
 
 
-class Dashboard extends StatefulWidget {
+class Voice extends StatefulWidget {
   @override
-  _DashboardState createState() => _DashboardState();
+  _VoiceState createState() => _VoiceState();
 }
 
-class _DashboardState extends State<Dashboard> {
+class _VoiceState extends State<Voice> {
+    stt.SpeechToText _speech = stt.SpeechToText();
+  String _text = 'Your text will be displayed here.......';
     @override
   void initState() {
     super.initState();
@@ -34,50 +36,6 @@ class _DashboardState extends State<Dashboard> {
     });
   }
 
-  Widget cardWidget(String title, Widget routeBuilder) {
-    return InkWell(
-      onTap: () {
-        Navigator.push(
-            context, MaterialPageRoute(builder: (context) => routeBuilder));
-      },
-      child: Card(
-        color: Color.fromARGB(255, 17, 5, 44)
-            .withOpacity(0.2), // make the Card semi-transparent
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(30.0),
-        ),
-        elevation: 7,
-        margin: EdgeInsets.all(20),
-        child: ClipRRect(
-          borderRadius: BorderRadius.circular(30.0),
-          child: BackdropFilter(
-            filter: ImageFilter.blur(sigmaX: 70, sigmaY: 10),
-            child: Container(
-              alignment: Alignment.center,
-              color: Color.fromARGB(5, 40, 43, 91).withOpacity(0.1),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: <Widget>[
-
-                  Text(
-                    '$title', // display the percentage
-                    style: TextStyle(
-                          fontFamily: 'Manrope',
-                          color: Color.fromARGB(
-                              255, 94, 183, 255), // make the text blue
-                          fontSize: 27, // make the text a little big
-                        ),
-
-                  ),// add some spacing
-                 
-                ],
-              ),
-            ),
-          ),
-        ),
-      ),
-    );
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -89,7 +47,7 @@ class _DashboardState extends State<Dashboard> {
       appBar: AppBar(
         automaticallyImplyLeading: false, // this will hide the back button
         title: Center(
-          child: Text('Vizpay'), // replace 'Marks' with your desired title
+          child: Text('Voice'), // replace 'Marks' with your desired title
         ),
         backgroundColor: Colors.transparent,
         elevation: 0,
@@ -155,45 +113,28 @@ class _DashboardState extends State<Dashboard> {
                     height: 30,
                   ),
                   // Add a GridView.builder
-                  Container(
-                    height: hlen * 0.7, // specify the height of the GridView
-                    child: GridView.builder(
-                      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                        crossAxisCount: 2,// number of items per row
-                              childAspectRatio: 7/6, 
-                      ),
-                      itemCount: 4,
-                      itemBuilder: (context, index) {
-                        // Define your data
-                        List<String> titles = [
-                          'Split',
-                          'Pay',
-                          'Track',
-                          'History',
+                  
+                  
+                  //code here
 
-                        ];
-                       
+                  ElevatedButton(
+                   onPressed: _listen,
+                    child: Text('Button'),  
+                  )
 
-                        List<Widget> routes = [
-                          Voice(),
-                          Voice(),
-                          HomePage(),
-                          HomePage(),
-
-                        ];
-
-                        // Pass the data to the cardWidget function
-                        return cardWidget(
-                          titles[index],
-                          routes[index],
-                        );
-                      },
-                    ),
-                  ),
                 ],
               ),
             ),
-          
+Container(
+                    constraints: BoxConstraints(
+                    ),
+                    child: Text(
+                      _text,
+                      style: TextStyle(
+                              fontSize: 16,
+                              fontFamily: 'Manrope',
+                              fontWeight: FontWeight.w300)),
+                  ),
           Positioned(
             bottom: 0,
             left: 0,
@@ -212,7 +153,7 @@ class _DashboardState extends State<Dashboard> {
                     BottomNavigationBarItem(
                       icon: Container(
                         child: Icon(
-                          Icons.dangerous,
+                          Icons.home,
                           size: 30,
                         ), // replace with your custom icon
                       ),
@@ -252,5 +193,24 @@ class _DashboardState extends State<Dashboard> {
         ],
       ),
     );
+  }
+    Future<void> _listen() async {
+      var status = await Permission.microphone.status;
+  if (!status.isGranted) {
+    await Permission.microphone.request();
+  }else{
+    debugPrint('Permission Granted');
+  }
+    bool available = await _speech.initialize(
+      onStatus: (val) => print('onStatus: $val'),
+      onError: (val) => print('onError: $val'),
+    );
+    if (available) {
+      _speech.listen(
+        onResult: (val) => setState(() {
+          _text = val.recognizedWords;
+        }),
+      );
+    }
   }
 }
