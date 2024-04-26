@@ -42,8 +42,7 @@ class _DashboardState extends State<Dashboard> {
             context, MaterialPageRoute(builder: (context) => routeBuilder));
       },
       child: Card(
-        color: Color.fromARGB(255, 17, 5, 44)
-            .withOpacity(0.2), // make the Card semi-transparent
+        color: Color.fromARGB(255, 17, 5, 44).withOpacity(0.2), // make the Card semi-transparent
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(30.0),
         ),
@@ -158,13 +157,13 @@ class _DashboardState extends State<Dashboard> {
                   ),
                   // Add a GridView.builder
                   Container(
-                    height: hlen * 0.7, // specify the height of the GridView
+                    height: hlen * 0.6, // specify the height of the GridView
                     child: GridView.builder(
                       gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                         crossAxisCount: 2,// number of items per row
                               childAspectRatio: 7/6, 
                       ),
-                      itemCount: 5,
+                      itemCount: 4,
                       itemBuilder: (context, index) {
                         // Define your data
                         List<String> titles = [
@@ -192,7 +191,33 @@ class _DashboardState extends State<Dashboard> {
                       },
                     ),
                   ),
-                     
+                    GestureDetector(
+                      onTap: () {
+                        Navigator.push(
+                            context, MaterialPageRoute(builder: (context) => Voice()));
+                        // Add your onTap functionality here
+                      },
+                      child: Container(
+                        alignment: Alignment.center,
+                        child: ClipOval(
+                          child: BackdropFilter(
+                            filter: ImageFilter.blur(sigmaX: 20.0, sigmaY: 11000.0),
+                            child: Container(
+                              width: 100.0,
+                              height: 100.0,
+                              child: Container(
+                                alignment: Alignment.center,
+                                child: Icon(
+                                  Icons.mic,
+                                  size: 45,
+                                ),
+                              ),
+                            ),
+                          ),
+                        ),
+                      ),
+                    )
+                    
              
                 ],
               ),
