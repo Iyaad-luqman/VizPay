@@ -16,7 +16,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'NeuroFit',
+      title: 'VizPay',
       theme: ThemeData.dark(),
       home:  HomePage(),
     );
