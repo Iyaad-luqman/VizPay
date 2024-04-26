@@ -45,7 +45,7 @@ def nlp_process(user_question):
                                 safety_settings=safety_settings)
   
     prompt_parts = [
-    "{\n \"prompt\": \"this is the prompt for viz pay which is a voice based transaction app, where the transactions are made from the text obtained from the voice commands of the user. i will provide set of conditions and the respective actions to be carried out for the same.If in the prompt text reciever_name and amount is mentioned, the action=\"to_pay\". The next condition is that if \"reciever_name\" is not mentioned and only amount is mentioned in numbers the action= \"open_scanner\". Condition 3 is that if the mentioned \"reciever_name\" is not available in contacts the action to be carried out is \"open_keypad\". The prompt is \" " user_question" \"  The output will be in the form of json like \n reciever_name: \"John Doe\", reciever_number: \"8714346406\",amount: 1000,     action: \"pay_money_contact\"}. The output should only be Json, and not including any other text or anything.\n"]
+    "{\n \"prompt\": \"this is the prompt for viz pay which is a voice based transaction app, where the transactions are made from the text obtained from the voice commands of the user. i will provide set of conditions and the respective actions to be carried out for the same.If in the prompt text reciever_name and amount is mentioned, the action=\"to_pay\". The next condition is that if \"reciever_name\" is not mentioned and only amount is mentioned in numbers the action= \"open_scanner\". Condition 3 is that if the mentioned \"reciever_name\" is not available in contacts the action to be carried out is \"open_keypad\". The prompt is \" "  + user_question + " \"  The output will be in the form of json like \n reciever_name: \"John Doe\", reciever_number: \"8714346406\",amount: 1000,     action: \"pay_money_contact\"}. The output should only be Json, and not including any other text or anything.\n"]
 
     response = model.generate_content(prompt_parts)
     response = response.text
@@ -54,4 +54,4 @@ def nlp_process(user_question):
 
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(debug=True, host='0.0.0.0')
