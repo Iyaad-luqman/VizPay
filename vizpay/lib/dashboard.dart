@@ -2,6 +2,7 @@ import 'dart:async';
 import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:vizpay/HomePage.dart';
+import 'package:vizpay/qr.dart';
 import 'package:vizpay/voice.dart';
 
 
@@ -162,7 +163,7 @@ class _DashboardState extends State<Dashboard> {
                         crossAxisCount: 2,// number of items per row
                               childAspectRatio: 7/6, 
                       ),
-                      itemCount: 4,
+                      itemCount: 5,
                       itemBuilder: (context, index) {
                         // Define your data
                         List<String> titles = [
@@ -178,7 +179,7 @@ class _DashboardState extends State<Dashboard> {
                           Voice(),
                           Voice(),
                           HomePage(),
-                          HomePage(),
+                          QRScanPage(),
 
                         ];
 
@@ -254,3 +255,4 @@ class _DashboardState extends State<Dashboard> {
     );
   }
 }
+
