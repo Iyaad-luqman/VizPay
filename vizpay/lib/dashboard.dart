@@ -2,6 +2,7 @@ import 'dart:async';
 import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:vizpay/HomePage.dart';
+import 'package:vizpay/Prompt.dart';
 import 'package:vizpay/qr.dart';
 import 'package:vizpay/voice.dart';
 
@@ -177,7 +178,7 @@ class _DashboardState extends State<Dashboard> {
                        
 
                         List<Widget> routes = [
-                          Voice(),
+                          PaymentConfirmationPage(),
                           Voice(),
                           HomePage(),
                           QRScanPage(),
