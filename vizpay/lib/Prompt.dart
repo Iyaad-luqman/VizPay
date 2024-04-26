@@ -1,6 +1,17 @@
 import 'package:flutter/material.dart';
 
-class PaymentConfirmationPage extends StatelessWidget {
+class PaymentConfirmationPage extends StatefulWidget {
+  @override
+  _PaymentConfirmationPageState createState() => _PaymentConfirmationPageState();
+}
+
+class _PaymentConfirmationPageState extends State<PaymentConfirmationPage> {
+  @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((_) => _showConfirmationDialog(context));
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
