@@ -1,5 +1,6 @@
 import 'dart:ui';
 import 'package:flutter/material.dart';
+import 'package:vizpay/dashboard.dart';
 // import 'package:vizpay/home.dart';
 
 
@@ -46,7 +47,7 @@ class _HomePageState extends State<HomePage> {
                         padding: EdgeInsets.fromLTRB(10, hlen*0.25,0,0),
                         child: GestureDetector(
                           onTap: () {
-                            // Navigator.push(context, MaterialPageRoute(builder: (context) => Home()));
+                            Navigator.push(context, MaterialPageRoute(builder: (context) => Dashboard()));
                           },
                           child: Text(
                             'VizPay',
