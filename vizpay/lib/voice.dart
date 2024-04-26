@@ -13,10 +13,11 @@ class Voice extends StatefulWidget {
 
 class _VoiceState extends State<Voice> {
     stt.SpeechToText _speech = stt.SpeechToText();
-  String _text = 'Your text will be displayed here.......';
+  String _text = 'Speak Now';
     @override
   void initState() {
     super.initState();
+    _listen();
     // _checkFirebase();
   }
   
@@ -81,60 +82,77 @@ class _VoiceState extends State<Voice> {
                   SizedBox(
                     height: 20,
                   ),
-                  Padding(
-                    padding: const EdgeInsets.fromLTRB(30, 0, 0, 5),
-                    child: Text(
-                      'Hello User!',
-                      style: TextStyle(
-                          fontSize: 23,
+                 SizedBox(
+  height: 500.0, // Specify your desired height
+  child: Card(
+        color: Color.fromARGB(255, 17, 5, 44).withOpacity(0.2), // make the Card semi-transparent
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(30.0),
+        ),
+        elevation: 7,
+        margin: EdgeInsets.all(20),
+        child: ClipRRect(
+          borderRadius: BorderRadius.circular(30.0),
+          child: BackdropFilter(
+            filter: ImageFilter.blur(sigmaX: 70, sigmaY: 10),
+            child: Container(
+              alignment: Alignment.center,
+              color: Color.fromARGB(5, 40, 43, 91).withOpacity(0.1),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: <Widget>[
+
+                  Text(
+                    _text, // display the percentage
+                    style: TextStyle(
                           fontFamily: 'Manrope',
-                          fontWeight: FontWeight.bold),
-                    ),
-                  ),
-                  Row(
-                    children: [
-                      SizedBox(
-                        width: 20,
-                      ),
-                    
-                      Padding(
-                        padding: const EdgeInsets.fromLTRB(10, 0, 0, 0),
-                        child: Text(
-                          'User',
-                          style: TextStyle(
-                              fontSize: 16,
-                              fontFamily: 'Manrope',
-                              fontWeight: FontWeight.w300),
+                          color: Color.fromARGB(
+                              255, 94, 183, 255), // make the text blue
+                          fontSize: 24, // make the text a little big
                         ),
-                      ),
-                    ],
-                  ),
-                  SizedBox(
-                    height: 30,
-                  ),
-                  // Add a GridView.builder
-                  
-                  
-                  //code here
 
-                  ElevatedButton(
-                   onPressed: _listen,
-                    child: Text('Button'),  
-                  )
-
+                  ),// add some spacing
+                 
                 ],
               ),
             ),
-Container(
-                    constraints: BoxConstraints(
-                    ),
-                    child: Text(
-                      _text,
-                      style: TextStyle(
-                              fontSize: 16,
-                              fontFamily: 'Manrope',
-                              fontWeight: FontWeight.w300)),
-                  ),
+          ),
+        ),
+      ),
+                 ),
+                 SizedBox(
+  height: 50.0, // Specify your desired height
+                 ),
+                   GestureDetector(
+                      onTap: () {
+                        Navigator.push(
+                            context, MaterialPageRoute(builder: (context) => Voice()));
+                        // Add your onTap functionality here
+                      },
+                      child: Container(
+                        alignment: Alignment.center,
+                        child: ClipOval(
+                          child: BackdropFilter(
+                            filter: ImageFilter.blur(sigmaX: 20.0, sigmaY: 11000.0),
+                            child: Container(
+                              width: 100.0,
+                              height: 100.0,
+                              child: Container(
+                                alignment: Alignment.center,
+                                child: Icon(
+                                  Icons.mic,
+                                  size: 45,
+                                ),
+                              ),
+                            ),
+                          ),
+                        ),
+                      ),
+                    )
+                    
+                ],
+              ),
+            ),
           Positioned(
             bottom: 0,
             left: 0,
