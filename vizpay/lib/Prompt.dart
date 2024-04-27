@@ -21,7 +21,7 @@ class _PaymentConfirmationPageState extends State<PaymentConfirmationPage> {
       body: Center(
         child: ElevatedButton(
           onPressed: () => _showConfirmationDialog(context),
-          child: Text('Make Payment'),
+          child: Container(),
         ),
       ),
     );
