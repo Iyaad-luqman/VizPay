@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:vizpay/Confirmation.dart';
 
 class PaymentConfirmationPage extends StatefulWidget {
   @override
@@ -33,7 +34,7 @@ class _PaymentConfirmationPageState extends State<PaymentConfirmationPage> {
       builder: (BuildContext context) {
         return AlertDialog(
           title: Text('Confirmation'),
-          content: Text('Are you sure you want to make the payment?'),
+          content: Text('Are you sure you want to pay 200 Rs to John ?'),
           actions: <Widget>[
             ElevatedButton(
               child: Text('No'),
@@ -45,7 +46,7 @@ class _PaymentConfirmationPageState extends State<PaymentConfirmationPage> {
               child: Text('Yes'),
               onPressed: () {
                 // Handle the payment logic here
-                Navigator.of(context).pop();
+                Navigator.push(context, MaterialPageRoute(builder: (context) => Confirmation()));
               },
             ),
           ],

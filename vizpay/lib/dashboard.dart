@@ -43,7 +43,7 @@ class _DashboardState extends State<Dashboard> {
             context, MaterialPageRoute(builder: (context) => routeBuilder));
       },
       child: Card(
-        color: Color.fromARGB(255, 212, 208, 215).withOpacity(0.2), // make the Card semi-transparent
+        color: Color.fromARGB(255, 0, 0, 0).withOpacity(0.2), // make the Card semi-transparent
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(30.0),
         ),
@@ -64,7 +64,7 @@ class _DashboardState extends State<Dashboard> {
                     '$title', // display the percentage
                     style: TextStyle(
                           fontFamily: 'Manrope',
-                          color: Color.fromARGB(255, 86, 139, 183), // make the text blue
+                          color: Color.fromARGB(255, 9, 71, 122), // make the text blue
                           fontSize: 27, // make the text a little big
                         ),
 
@@ -212,6 +212,7 @@ class _DashboardState extends State<Dashboard> {
                                 child: Icon(
                                   Icons.mic,
                                   size: 45,
+                                  color: Color.fromARGB(255, 9, 71, 122), // make the icon blue
                                 ),
                               ),
                             ),
@@ -237,9 +238,9 @@ class _DashboardState extends State<Dashboard> {
               child: BackdropFilter(
                 filter: ImageFilter.blur(sigmaX: 90, sigmaY: 130),
                 child: BottomNavigationBar(
-                  backgroundColor: Color.fromARGB(255, 31, 0, 102).withOpacity(
+                  backgroundColor: Color.fromARGB(115, 176, 163, 207).withOpacity(
                       0), // make the BottomNavigationBar semi-transparent
-                  items: <BottomNavigationBarItem>[
+                  items: <BottomNavigationBarItem>[   
                     BottomNavigationBarItem(
                       icon: Container(
                         child: Icon(
@@ -253,7 +254,7 @@ class _DashboardState extends State<Dashboard> {
                       icon: Container(
                         
                         child: Icon(
-                          Icons.medical_information,
+                          Icons.money,
                           size: 30,
                         ), // replace with your custom icon
                       ),
