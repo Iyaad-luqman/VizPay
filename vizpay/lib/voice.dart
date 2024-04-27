@@ -5,6 +5,8 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:speech_to_text/speech_to_text.dart' as stt;
 import 'package:permission_handler/permission_handler.dart';
+import 'package:vizpay/Prompt.dart';
+import 'package:vizpay/qr.dart';
 
 class Voice extends StatefulWidget {
   @override
@@ -99,7 +101,9 @@ class _VoiceState extends State<Voice> {
                 ),
                 SizedBox(height: 50.0),
                 GestureDetector(
-                  onTap: () => _sendTextAndNavigate(_text),
+                    onTap: () {
+                  _sendTextAndNavigate(_text);
+                },
                   child: Container(
                     alignment: Alignment.center,
                     child: ClipOval(
@@ -125,39 +129,41 @@ class _VoiceState extends State<Voice> {
     );
   }
 
-  Future<void> _listen() async {
-    var status = await Permission.microphone.status;
-    if (!status.isGranted) {
-      await Permission.microphone.request();
-    } else {
-      debugPrint('Permission Granted');
-    }
-    bool available = await _speech.initialize(
-      onStatus: (val) => print('onStatus: $val'),
-      onError: (val) => print('onError: $val'),
-    );
-    if (available) {
-      _speech.listen(
-        onResult: (val) => setState(() {
-          _text = val.recognizedWords;
-        }),
-      );
-    }
+// Ensure _listen is a Future<void> function
+Future<void> _listen() async {
+  var status = await Permission.microphone.status;
+  if (!status.isGranted) {
+    await Permission.microphone.request();
   }
-
+  bool available = await _speech.initialize(
+    onStatus: (val) => print('onStatus: $val'),
+    onError: (val) => print('onError: $val'),
+  );
+  if (available) {
+    await _speech.listen(
+      onResult: (val) => setState(() {
+        _text = val.recognizedWords;
+      }),
+    );
+    // Assuming _speech.listen is asynchronous and you wait for it to finish
+    // You might need to adjust this based on how your speech to text package signals completion
+  }
+}
   Future<void> _sendTextAndNavigate(String text) async {
-    final response = await http.get(Uri.parse('http://x192.168.109.197:5050/$text'));
+    final url = Uri.parse('http://192.168.89.198:5000/nlp_process/$text');
+    final response = await http.get(url);
     if (response.statusCode == 200) {
       final result = json.decode(response.body);
       if (result['action'] == 'to_pay') {
         debugPrint('Navigating to Pay');
-        // Navigator.push(context, MaterialPageRoute(builder: (context) => Page1()));
+        Navigator.push(context, MaterialPageRoute(builder: (context) => PaymentConfirmationPage()));
       } else if (result['action'] == 'open_scanner') {
         debugPrint('Navigating to Scanner');
-        // Navigator.push(context, MaterialPageRoute(builder: (context) => Page2()));
+        Navigator.push(context, MaterialPageRoute(builder: (context) => QRScanPage()));
       } else if (result['action'] == 'open_keypad') {
         debugPrint('Navigating to Keypad');
-        // Navigator.push(context, MaterialPageRoute(builder: (context) => Page3()));
+        Navigator.push(context, MaterialPageRoute(builder: (context) => QRScanPage()));
+        
       }
     } else {
       // Handle the error

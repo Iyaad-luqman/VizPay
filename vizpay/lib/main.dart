@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:vizpay/HomePage.dart';
-
 void main() async {
 
 // WidgetsFlutterBinding.ensureInitialized();
@@ -10,7 +9,6 @@ void main() async {
 runApp(MyApp());
 
 }
-
 class MyApp extends StatelessWidget {
    MyApp({super.key});
 
