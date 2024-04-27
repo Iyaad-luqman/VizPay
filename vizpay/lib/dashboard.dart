@@ -253,7 +253,7 @@ class _DashboardState extends State<Dashboard> {
                       icon: Container(
                         
                         child: Icon(
-                          Icons.medical_information,
+                          Icons.money,
                           size: 30,
                         ), // replace with your custom icon
                       ),
