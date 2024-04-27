@@ -43,7 +43,7 @@ class _DashboardState extends State<Dashboard> {
             context, MaterialPageRoute(builder: (context) => routeBuilder));
       },
       child: Card(
-        color: Color.fromARGB(255, 17, 5, 44).withOpacity(0.2), // make the Card semi-transparent
+        color: Color.fromARGB(255, 212, 208, 215).withOpacity(0.2), // make the Card semi-transparent
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(30.0),
         ),
@@ -55,7 +55,7 @@ class _DashboardState extends State<Dashboard> {
             filter: ImageFilter.blur(sigmaX: 70, sigmaY: 10),
             child: Container(
               alignment: Alignment.center,
-              color: Color.fromARGB(5, 40, 43, 91).withOpacity(0.1),
+              color: Color.fromARGB(5, 196, 197, 201).withOpacity(0.1),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
@@ -64,8 +64,7 @@ class _DashboardState extends State<Dashboard> {
                     '$title', // display the percentage
                     style: TextStyle(
                           fontFamily: 'Manrope',
-                          color: Color.fromARGB(
-                              255, 94, 183, 255), // make the text blue
+                          color: Color.fromARGB(255, 86, 139, 183), // make the text blue
                           fontSize: 27, // make the text a little big
                         ),
 
@@ -125,16 +124,18 @@ class _DashboardState extends State<Dashboard> {
                   SizedBox(
                     height: 20,
                   ),
-                  Padding(
-                    padding: const EdgeInsets.fromLTRB(30, 0, 0, 5),
-                    child: Text(
-                      'Hello User!',
-                      style: TextStyle(
-                          fontSize: 23,
-                          fontFamily: 'Manrope',
-                          fontWeight: FontWeight.bold),
-                    ),
-                  ),
+                 Padding(
+  padding: const EdgeInsets.fromLTRB(30, 0, 0, 5),
+  child: Text(
+    'Hello User!',
+    style: TextStyle(
+      fontSize: 23,
+      fontFamily: 'Manrope',
+      fontWeight: FontWeight.bold,
+      color: const Color.fromARGB(255, 0, 0, 0),  // Add this line
+    ),
+  ),
+),
                   Row(
                     children: [
                       SizedBox(

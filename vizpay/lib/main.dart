@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:vizpay/HomePage.dart';
+
 void main() async {
 
 // WidgetsFlutterBinding.ensureInitialized();
@@ -14,7 +15,7 @@ class MyApp extends StatelessWidget {
    MyApp({super.key});
 
   @override
-  Widget build(BuildContext context) {
+Widget build(BuildContext context) {          
     return MaterialApp(
       title: 'VizPay',
       theme: ThemeData.dark(),
