@@ -24,7 +24,11 @@ APPPROACH:
   >>Integrating NLP guided Voice to Speech conversion module to tranfer funds via voice commands >>Voice authentication of the user backed up by fingerprint biometrics Stretching goals: >>Multilanguage Functionality using Hugging face
  >>Voice assisted Splitwise inspired feature.Splitwise is an app where the financial expenditure of a group of people can effectively be split by inputting who paid for what and when. And we were ignited by an idea to bring in voice assitance in play to make the whole process more eficient.
 
+# Our Progress in Voice Biometric Authentication 
 
+![alt text](image.png)
+
+![alt text](image-1.png)
 
 OUR PROGRESS:
 
