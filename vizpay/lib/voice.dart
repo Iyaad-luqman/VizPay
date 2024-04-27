@@ -108,14 +108,16 @@ class _VoiceState extends State<Voice> {
                     alignment: Alignment.center,
                     child: ClipOval(
                       child: BackdropFilter(
-                        filter: ImageFilter.blur(sigmaX: 20.0, sigmaY: 10.0),
+                        filter: ImageFilter.blur(sigmaX: 10.0, sigmaY: 5.0),
+
                         child: Container(
                           width: 100.0,
                           height: 100.0,
                           child: Icon(
-                            Icons.mic,
-                            size: 45,
-                          ),
+  Icons.mic,
+  color: Color.fromARGB(255, 144, 202, 255), // Lighter shade
+  size: 45,
+),
                         ),
                       ),
                     ),
